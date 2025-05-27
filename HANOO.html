@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HANOO</title>
+  <style>
+    body {
+      background: #ffefff;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+        body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('https://media.discordapp.net/attachments/1299365559825076305/1343496395687989318/Screenshot_2025-02-24_150920.png?ex=6836c605&is=68357485&hm=9b420034792feb8e75a798bca9b2e959eb84a17ce44b82beb884fe685a9ca985&=&format=webp&quality=lossless&width=1603&height=902');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.7);
+      z-index: -1;
+    }
+
+    h1 {
+      color: #d14;
+      margin-bottom: 30px;
+      font-size: 2.5em;
+    }
+
+    button {
+      background: #f48fb1;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.3em;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(244, 143, 177, 0.5);
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #f06292;
+    }
+
+    .message {
+      position: absolute;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: rgb(255, 255, 255);
+      animation: floatUp 2s forwards;
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-150px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>To HANOO!</h1>
+  <button id="btnCheer">Press it. 😊</button>
+
+  <script>
+    const messages = [
+      "วันนี้คุณเก่งมากแล้ว!",
+      "วันนี้เหนื่อยไหม? มากอดกำลังใจหน่อยมั้ย",
+      "วันนี้เธอก็เก่งเหมือนเดิมเลยนะ~",
+      "มีคนรอรอยยิ้มของเธออยู่นะ :)",
+      "พักได้ แต่อย่าหายไปนานนะ คิดถึงแน่เลย~",
+      "ขอบคุณที่ยังมาไลฟ์ให้เราดูนะ น่ารักที่สุดเลย",
+      "เป็นกำลังใจให้เสมอเลยนะ คนเก่งของแชท",
+      "แค่ได้เห็นเธอไลฟ์ ก็รู้สึกว่าวันนี้สดใสขึ้นแล้ว!",
+      "Keep going, you’re doing amazing!",
+      "สู้ๆ กับการสตรีมนะครับ!",
+      "ขอให้สนุกกับสิ่งที่ทำ",
+      "พักผ่อนให้เพียงพอด้วยนะ เดี๋ยวจะไม่สบายเอา 💖"
+    ];
+
+    const btn = document.getElementById('btnCheer');
+
+    btn.addEventListener('click', (e) => {
+      const messageText = messages[Math.floor(Math.random() * messages.length)];
+      const messageElem = document.createElement('div');
+      messageElem.classList.add('message');
+      messageElem.textContent = messageText;
+
+      // ตั้งตำแหน่งของข้อความสุ่มรอบ ๆ ปุ่ม
+      const rect = btn.getBoundingClientRect();
+      const x = rect.left + Math.random() * rect.width;
+      const y = rect.top + Math.random() * rect.height;
+
+      messageElem.style.left = `${x}px`;
+      messageElem.style.top = `${y}px`;
+
+      document.body.appendChild(messageElem);
+
+      // ลบข้อความหลัง animation จบ (2 วินาที)
+      setTimeout(() => {
+        messageElem.remove();
+      }, 7000);
+    });
+  </script>
+</body>
+</html>
